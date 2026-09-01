@@ -1,0 +1,2613 @@
+{
+  "sop": [
+    {
+      "stage": "需求挖掘",
+      "field": "asked_use_case",
+      "label": "询问用途",
+      "missingDiagnosis": "销售需求确认不足"
+    },
+    {
+      "stage": "需求挖掘",
+      "field": "asked_budget",
+      "label": "询问预算",
+      "missingDiagnosis": "预算未确认"
+    },
+    {
+      "stage": "需求挖掘",
+      "field": "asked_purchase_timeline",
+      "label": "询问购车周期",
+      "missingDiagnosis": "购车周期未确认"
+    },
+    {
+      "stage": "需求挖掘",
+      "field": "asked_decision_maker",
+      "label": "询问决策人",
+      "missingDiagnosis": "决策链未识别"
+    },
+    {
+      "stage": "产品介绍",
+      "field": "introduced_product_by_need",
+      "label": "结合需求讲解",
+      "missingDiagnosis": "产品讲解偏离需求"
+    },
+    {
+      "stage": "体验推进",
+      "field": "invited_test_drive",
+      "label": "邀约试驾",
+      "missingDiagnosis": "试驾推进不足"
+    },
+    {
+      "stage": "报价议价",
+      "field": "quoted_price",
+      "label": "报价",
+      "missingDiagnosis": "未报价"
+    },
+    {
+      "stage": "异议处理",
+      "field": "handled_objection",
+      "label": "处理异议",
+      "missingDiagnosis": "异议处理不足"
+    },
+    {
+      "stage": "离店闭环",
+      "field": "confirmed_next_followup",
+      "label": "确认下次跟进",
+      "missingDiagnosis": "跟进闭环缺失"
+    }
+  ],
+  "customerTags": {
+    "intentLevel": [
+      "高意向",
+      "中高意向",
+      "中意向",
+      "低意向",
+      "无效",
+      "无法判断"
+    ],
+    "purchaseStage": [
+      "初步了解",
+      "配置比较",
+      "价格比较",
+      "决策期",
+      "已流失"
+    ],
+    "objections": [
+      "价格",
+      "竞品",
+      "产品不匹配",
+      "家人决策",
+      "售后顾虑",
+      "金融压力",
+      "时间不急",
+      "库存交付"
+    ],
+    "concerns": [
+      "价格",
+      "空间",
+      "安全",
+      "智能",
+      "外观",
+      "续航",
+      "动力",
+      "售后",
+      "保值"
+    ],
+    "followUpValue": [
+      "高优先级",
+      "普通跟进",
+      "低优先级",
+      "暂不跟进",
+      "不可跟进",
+      "信息不足"
+    ]
+  },
+  "salesTags": {
+    "sopExecution": [
+      "完成",
+      "部分完成",
+      "未完成"
+    ],
+    "needDiscovery": [
+      "充分",
+      "一般",
+      "不足"
+    ],
+    "productExplanation": [
+      "匹配需求",
+      "泛泛讲解",
+      "偏离需求"
+    ],
+    "objectionHandling": [
+      "有效",
+      "一般",
+      "未处理"
+    ],
+    "closing": [
+      "主动推进",
+      "被动等待",
+      "未推进"
+    ],
+    "followUpClosure": [
+      "已确认",
+      "未确认"
+    ]
+  },
+  "complianceForbidden": [
+    {
+      "type": "价格",
+      "phrase": "保证最低价"
+    },
+    {
+      "type": "价格",
+      "phrase": "绝对最便宜"
+    },
+    {
+      "type": "金融",
+      "phrase": "一定能批"
+    },
+    {
+      "type": "金融",
+      "phrase": "贷款肯定通过"
+    },
+    {
+      "type": "产品",
+      "phrase": "不存在配置"
+    },
+    {
+      "type": "竞品",
+      "phrase": "竞品都不行"
+    },
+    {
+      "type": "权益",
+      "phrase": "未确认优惠"
+    }
+  ],
+  "strategyTemplates": {
+    "价格异议处理不足": {
+      "strategyId": "price-objection-followup",
+      "action": "确认预算差距，发送落地价拆解和金融方案",
+      "timing": "24小时内",
+      "channel": "微信或电话",
+      "materials": [
+        "报价单",
+        "金融方案",
+        "权益说明"
+      ],
+      "templateKey": "price_followup"
+    },
+    "竞品异议未处理": {
+      "strategyId": "competitor-compare",
+      "action": "确认竞品型号和比较维度，发送差异化对比材料",
+      "timing": "当天",
+      "channel": "微信",
+      "materials": [
+        "竞品配置对比表",
+        "客户关注点卖点说明"
+      ],
+      "templateKey": "competitor_followup"
+    },
+    "决策链未闭合": {
+      "strategyId": "decision-maker-return",
+      "action": "邀约家人或关键决策人二次到店",
+      "timing": "次日中午前",
+      "channel": "电话优先",
+      "materials": [
+        "家用场景卖点",
+        "空间/安全说明",
+        "费用拆解"
+      ],
+      "templateKey": "decision_followup"
+    },
+    "试驾推进不足": {
+      "strategyId": "test-drive-invite",
+      "action": "围绕客户关注点邀约试驾体验",
+      "timing": "48小时内",
+      "channel": "电话或微信",
+      "materials": [
+        "试驾路线",
+        "体验重点清单"
+      ],
+      "templateKey": "test_drive_followup"
+    },
+    "报价后推进不足": {
+      "strategyId": "quote-followup",
+      "action": "跟进报价反馈，确认预算差距和下一步动作",
+      "timing": "次日上午",
+      "channel": "微信",
+      "materials": [
+        "报价拆解",
+        "优惠有效期",
+        "置换/金融方案"
+      ],
+      "templateKey": "quote_followup"
+    },
+    "离店跟进闭环缺失": {
+      "strategyId": "closure-repair",
+      "action": "补充一次有内容的离店跟进并约定下次沟通",
+      "timing": "当天",
+      "channel": "微信",
+      "materials": [
+        "本次沟通摘要",
+        "下一步确认问题"
+      ],
+      "templateKey": "closure_followup"
+    },
+    "销售需求确认不足": {
+      "strategyId": "need-discovery-repair",
+      "action": "复用事实层已知需求，只补问仍未明确的信息",
+      "timing": "下次触达时",
+      "channel": "电话",
+      "materials": [
+        "需求补问清单"
+      ],
+      "templateKey": "need_followup"
+    }
+  },
+  "feedbackOptions": {
+    "sales": [
+      "采纳",
+      "不适用",
+      "已跟进",
+      "复制话术",
+      "修改后使用"
+    ],
+    "manager": [
+      "认可",
+      "修改原因",
+      "标记可挽回",
+      "通过话术",
+      "驳回话术",
+      "加入陪练"
+    ],
+    "operations": [
+      "查看准确率",
+      "记录误报",
+      "调整策略权重",
+      "沉淀标签效果"
+    ]
+  },
+  "factExtractionFields": [
+    {
+      "key": "会话场景",
+      "category": "基础会话信息",
+      "field": "会话场景",
+      "meaning": "判断这通对话属于展厅接待、试驾讲解、报价议价、离店跟进、售后咨询等哪类场景",
+      "modelPrompt": "请根据完整对话判断本次会话的主要销售场景，只能从以下枚举中选择：首次接待、需求挖掘、产品介绍、试乘试驾、报价议价、竞品对比、成交推进、离店跟进、售后咨询、无效会话。若多个场景同时存在，请输出主场景和次场景，并给出证据原话。",
+      "outputRequirement": "main_scene、sub_scene、evidence",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "销售阶段",
+      "category": "基础会话信息",
+      "field": "销售阶段",
+      "meaning": "判断客户当前在成交链路中的位置",
+      "modelPrompt": "请判断客户当前处于哪个销售阶段，只能从以下枚举中选择：初步了解、需求明确、产品比较、价格比较、试驾体验、决策犹豫、成交推进、离店待跟进、已流失风险。必须基于客户表达和销售动作判断，不能凭空推测。",
+      "outputRequirement": "sales_stage、evidence",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "用车_购买场景",
+      "category": "客户画像",
+      "field": "用车/购买场景",
+      "meaning": "客户买车/买产品的实际用途",
+      "modelPrompt": "请提取客户明确表达或强相关暗示的使用场景，例如家用、通勤、商务、接送孩子、老人乘坐、长途、自用、送人、企业采购等。若客户未提及，输出“未提及”，不要推断。",
+      "outputRequirement": "use_case、explicit_or_inferred、evidence",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "预算信息",
+      "category": "客户画像",
+      "field": "预算信息",
+      "meaning": "客户价格承受范围、总价/月供/首付敏感度",
+      "modelPrompt": "请提取客户提到的预算、价格接受范围、首付、月供、优惠、贵/便宜等信息。区分“明确预算”和“价格敏感表达”。如果客户只说“贵”，不要推断具体预算。",
+      "outputRequirement": "budget_value、price_sensitivity、evidence",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "购车_购买周期",
+      "category": "客户画像",
+      "field": "购车/购买周期",
+      "meaning": "客户打算什么时候买",
+      "modelPrompt": "请提取客户的购买时间计划，例如今天、近期、本周、月底、一个月内、三个月内、不着急、只是看看。若没有提及，输出“未提及”。",
+      "outputRequirement": "purchase_timeline、urgency_level、evidence",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "决策人_影响人",
+      "category": "客户画像",
+      "field": "决策人/影响人",
+      "meaning": "是否本人决策，是否需要家人/领导参与",
+      "modelPrompt": "请识别本次购买决策由谁参与，包括客户本人、配偶、父母、子女、领导、老板、朋友等。若客户表达“回去商量”“问家人”“再和领导确认”，标记为“决策链未闭合”。",
+      "outputRequirement": "decision_makers、decision_chain_status、evidence",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "关注点",
+      "category": "客户画像",
+      "field": "关注点",
+      "meaning": "客户真正关心什么",
+      "modelPrompt": "请从客户表达中提取关注点，只能从以下枚举中多选：价格、空间、安全、外观、品牌、售后、保值、智能化、动力、续航、油耗/能耗、舒适性、金融方案、交付周期、库存颜色、配置版本、竞品对比。每个关注点必须有证据。",
+      "outputRequirement": "concerns[]、evidence[]",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "竞品信息",
+      "category": "客户画像",
+      "field": "竞品信息",
+      "meaning": "客户是否提到其他品牌/门店/产品",
+      "modelPrompt": "请提取客户提到的竞品品牌、车型、门店、平台、报价或对比点。若客户只说“别家”“其他店”，也要记录为“模糊竞品”。不要补充客户没说过的竞品名称。",
+      "outputRequirement": "competitors[]、comparison_dimension、evidence",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "显性异议",
+      "category": "客户异议",
+      "field": "显性异议",
+      "meaning": "客户明确说出的阻碍",
+      "modelPrompt": "请识别客户明确表达的异议，只能从以下枚举中多选：价格异议、竞品异议、产品不匹配、家人/领导决策、售后顾虑、金融压力、库存/交付顾虑、配置犹豫、时间不急、信任顾虑、试驾/体验顾虑、无购买意向。每个异议必须给出客户原话。",
+      "outputRequirement": "explicit_objections[]、strength、evidence",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "隐性异议",
+      "category": "客户异议",
+      "field": "隐性异议",
+      "meaning": "客户没有直接说，但从上下文可判断的阻碍",
+      "modelPrompt": "请根据客户反复追问、回避、沉默、转移话题、拒绝推进等行为，识别可能存在的隐性异议。必须标记为“推断”，并说明推断依据。若证据不足，输出“无明确隐性异议”。",
+      "outputRequirement": "implicit_objections[]、inference_basis",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "异议强度",
+      "category": "客户异议",
+      "field": "异议强度",
+      "meaning": "异议对成交推进的影响程度",
+      "modelPrompt": "请判断每个异议的强度：低、中、高。判断标准：客户是否多次提及、是否因此拒绝试驾/报价/下订/留资、销售是否未能推进下一步。必须说明理由。",
+      "outputRequirement": "objection_strength、reason",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "意向等级",
+      "category": "客户意向",
+      "field": "意向等级",
+      "meaning": "客户成交可能性",
+      "modelPrompt": "请综合客户是否主动询价、是否明确需求、是否试驾、是否留下联系方式、是否提出具体异议、是否有购买周期，判断客户意向等级：高、中高、中、低、无效。必须给出正向证据和负向证据。",
+      "outputRequirement": "intent_level、positive_signals、negative_signals",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "是否可跟进",
+      "category": "客户状态",
+      "field": "是否可跟进",
+      "meaning": "这个客户后续是否值得销售继续跟",
+      "modelPrompt": "请判断客户后续跟进价值：高优先级、普通跟进、低优先级、暂不跟进。判断依据包括意向等级、购买周期、异议类型、是否留资、是否有明确下一步。",
+      "outputRequirement": "follow_up_value、reason",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "SOP动作完成情况",
+      "category": "销售动作",
+      "field": "SOP动作完成情况",
+      "meaning": "销售有没有完成关键接待动作",
+      "modelPrompt": "请根据对话判断销售是否完成以下动作：问候开场、询问用途、询问预算、询问购车周期、询问决策人、确认关注点、介绍产品、结合需求讲解、邀约试驾、报价、解释价格、处理异议、确认竞品、确认下次跟进、礼貌结束。每项输出 true/false/不适用，并给证据。",
+      "outputRequirement": "sop_actions{}",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "需求挖掘质量",
+      "category": "销售动作",
+      "field": "需求挖掘质量",
+      "meaning": "销售是否真正问清楚客户需求",
+      "modelPrompt": "请判断销售需求挖掘质量：充分、一般、不足。标准：是否问到用途、预算、周期、决策人、关注点、竞品、已有车辆/替换原因。说明缺失项。",
+      "outputRequirement": "need_discovery_quality、missing_items",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "产品讲解匹配度",
+      "category": "销售动作",
+      "field": "产品讲解匹配度",
+      "meaning": "销售讲的内容是否匹配客户关注点",
+      "modelPrompt": "请判断销售产品讲解是否围绕客户关注点展开。若客户关注家用空间，销售却主要讲动力或智能化，应标记为“讲解偏离需求”。输出匹配、部分匹配、偏离需求、未讲解。",
+      "outputRequirement": "product_explanation_match、evidence",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "异议处理情况",
+      "category": "销售动作",
+      "field": "异议处理情况",
+      "meaning": "销售是否回应了客户异议",
+      "modelPrompt": "请针对每个客户异议，判断销售是否进行了有效回应。输出：有效处理、部分处理、未处理、处理错误。判断标准：是否承接客户顾虑、是否追问原因、是否给出解决方案、是否推动下一步。",
+      "outputRequirement": "objection_handling[]",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "成交推进动作",
+      "category": "销售动作",
+      "field": "成交推进动作",
+      "meaning": "销售有没有推进试驾、报价、留资、下订、复店",
+      "modelPrompt": "请识别销售是否有成交推进动作，包括邀约试驾、邀请复店、索要联系方式、发送资料、报价、引导下订、确认跟进时间。输出已完成和缺失动作。",
+      "outputRequirement": "closing_actions、missing_closing_actions",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "跟进闭环",
+      "category": "销售动作",
+      "field": "跟进闭环",
+      "meaning": "离店前是否明确下一步",
+      "modelPrompt": "请判断销售是否在对话结束前明确下一步动作，例如何时联系、发什么资料、是否约试驾/复店、谁来跟进。若只说“回去考虑”“有需要联系我”，视为未形成闭环。",
+      "outputRequirement": "follow_up_closure、next_step_confirmed、evidence",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "销售亮点",
+      "category": "销售表现",
+      "field": "销售亮点",
+      "meaning": "本通对话中销售做得好的地方",
+      "modelPrompt": "请提取销售表现亮点，只能基于真实对话，不要泛泛表扬。亮点应包括：需求挖掘好、产品解释清楚、异议处理有效、推进自然、服务态度好、总结到位等。每条亮点给证据。",
+      "outputRequirement": "sales_strengths[]",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "销售不足",
+      "category": "销售表现",
+      "field": "销售不足",
+      "meaning": "本通对话中销售影响转化的问题",
+      "modelPrompt": "请提取销售不足，只能基于对话证据和SOP动作缺失。不要输出空泛建议。每条不足必须对应具体缺失动作或客户异议未处理。",
+      "outputRequirement": "sales_weaknesses[]",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "候选优秀话术",
+      "category": "候选话术",
+      "field": "候选优秀话术",
+      "meaning": "可能值得沉淀的销售原话",
+      "modelPrompt": "请找出销售在关键节点的高质量表达，包括需求引导、产品讲解、价格异议、竞品对比、试驾邀约、离店跟进等。只输出候选，不要直接判定为官方优秀话术。必须包含客户问题、销售原话、客户反应、候选原因。",
+      "outputRequirement": "candidate_scripts[]",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "高风险片段",
+      "category": "候选风险",
+      "field": "高风险片段",
+      "meaning": "可能导致流失、投诉、误导、合规风险的片段",
+      "modelPrompt": "请识别可能影响客户体验或成交的风险片段，包括客户强烈不满、销售承诺不当、价格解释不清、异议未回应、客户明显流失信号。每条必须给原话。",
+      "outputRequirement": "risk_segments[]",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    },
+    {
+      "key": "关键证据",
+      "category": "证据体系",
+      "field": "关键证据",
+      "meaning": "后续诊断可引用的原话",
+      "modelPrompt": "请提取后续可用于诊断的关键证据，按类型归类：客户需求、客户异议、竞品提及、价格敏感、决策人、销售缺失动作、成交推进、离店闭环。每条证据必须包含 speaker、quote、timestamp。",
+      "outputRequirement": "evidence[]",
+      "allowedValues": "",
+      "enabled": true,
+      "requiresEvidence": true
+    }
+  ],
+  "strategyLibrary": [
+    {
+      "strategyId": "greeting-repair",
+      "category": "关系修复",
+      "triggerIssues": [
+        "未问候开场"
+      ],
+      "priority": 55,
+      "action": "首次跟进时结合客户称呼和本次看车内容进行个性化问候，说明服务身份并确认客户是否方便沟通",
+      "timing": "当天首次跟进时",
+      "channel": "微信优先，必要时电话",
+      "materials": [
+        "本次接待摘要",
+        "个性化开场话术"
+      ],
+      "managerIntervention": false
+    },
+    {
+      "strategyId": "need-discovery-repair",
+      "category": "需求补全",
+      "triggerIssues": [
+        "销售需求确认不足"
+      ],
+      "priority": 82,
+      "action": "复用事实层已知需求，只确认仍未明确的用途、预算、核心关注点、决策人或购车周期，再匹配车型与方案",
+      "timing": "24小时内",
+      "channel": "电话或微信",
+      "materials": [
+        "需求确认清单",
+        "车型与需求匹配资料"
+      ],
+      "managerIntervention": false
+    },
+    {
+      "strategyId": "purchase-timeline-confirmation",
+      "category": "购车计划确认",
+      "triggerIssues": [
+        "购车周期未确认"
+      ],
+      "priority": 78,
+      "action": "确认客户计划用车时间及牌照、置换、交付等关键节点，并约定与时间计划匹配的试驾、报价或复店安排",
+      "timing": "24小时内",
+      "channel": "电话优先，微信确认",
+      "materials": [
+        "购车时间确认清单",
+        "交付周期与近期活动说明"
+      ],
+      "managerIntervention": false
+    },
+    {
+      "strategyId": "price-objection-followup",
+      "category": "价格异议",
+      "triggerIssues": [
+        "价格异议处理不足",
+        "报价后推进不足"
+      ],
+      "priority": 90,
+      "action": "确认预算差距，发送落地价拆解和金融方案",
+      "timing": "24小时内",
+      "channel": "微信或电话",
+      "materials": [
+        "报价单",
+        "金融方案",
+        "权益说明"
+      ],
+      "managerIntervention": true
+    },
+    {
+      "strategyId": "test-drive-invite",
+      "category": "试驾推进",
+      "triggerIssues": [
+        "试驾推进不足"
+      ],
+      "priority": 75,
+      "action": "围绕客户关注点邀约试驾体验",
+      "timing": "48小时内",
+      "channel": "电话或微信",
+      "materials": [
+        "试驾路线",
+        "体验重点清单"
+      ],
+      "managerIntervention": false
+    },
+    {
+      "strategyId": "decision-maker-return",
+      "category": "决策链闭合",
+      "triggerIssues": [
+        "决策链未闭合"
+      ],
+      "priority": 85,
+      "action": "邀约家人或关键决策人二次到店",
+      "timing": "次日中午前",
+      "channel": "电话优先",
+      "materials": [
+        "家用场景卖点",
+        "空间/安全说明",
+        "费用拆解"
+      ],
+      "managerIntervention": true
+    },
+    {
+      "strategyId": "competitor-compare",
+      "category": "竞品对比",
+      "triggerIssues": [
+        "竞品异议未处理"
+      ],
+      "priority": 80,
+      "action": "确认竞品型号和比较维度，发送差异化对比材料",
+      "timing": "当天",
+      "channel": "微信",
+      "materials": [
+        "竞品配置对比表",
+        "客户关注点卖点说明"
+      ],
+      "managerIntervention": false
+    }
+  ],
+  "generationSpecs": {
+    "card_loss": {
+      "type": "败单分析卡片",
+      "status": "需结合CRM/人工确认",
+      "style": "候选归因表达，必须标记可挽回性和人工确认状态",
+      "mustInclude": [
+        "候选原因",
+        "风险等级",
+        "是否可挽回",
+        "证据"
+      ],
+      "forbidden": [
+        "无CRM/POS/人工反馈时不得输出确定败单"
+      ],
+      "actions": [
+        "认可",
+        "修改原因",
+        "标记可挽回",
+        "标记不可挽回"
+      ]
+    },
+    "card_script": {
+      "type": "优秀话术候选",
+      "status": "待店长/内训师审核",
+      "style": "只输出候选，不直接入库；必须包含客户问题、销售原话、候选原因",
+      "mustInclude": [
+        "场景",
+        "销售原话",
+        "客户问题",
+        "候选原因"
+      ],
+      "forbidden": [
+        "不得直接判定为官方优秀话术"
+      ],
+      "actions": [
+        "通过话术",
+        "驳回话术",
+        "优化后再审"
+      ]
+    },
+    "card_risk": {
+      "type": "风险提醒",
+      "status": "质检复核",
+      "style": "风险必须进入人工复核，表达克制，不扩大责任结论",
+      "mustInclude": [
+        "风险类型",
+        "证据",
+        "复核动作"
+      ],
+      "forbidden": [
+        "不得直接定责"
+      ],
+      "actions": [
+        "确认风险",
+        "驳回风险",
+        "加入复核队列"
+      ]
+    }
+  },
+  "factLayer": {
+    "enabled": true,
+    "industry": "汽车销售",
+    "schemaSource": "汽车行业通用角色行为事实（7类）",
+    "fieldDesignVersion": "role-behavior-v4",
+    "model": {
+      "enabled": true,
+      "provider": "openai-compatible",
+      "displayName": "阿里云百炼 Qwen3.7-Max",
+      "baseUrlEnv": "LLM_BASE_URL",
+      "apiKeyEnv": "LLM_API_KEY",
+      "modelEnv": "LLM_MODEL",
+      "temperature": 0,
+      "topP": 0.8,
+      "maxCompletionTokens": 12000,
+      "enableThinking": false,
+      "allowLocalExtractor": false
+    },
+    "systemPrompt": "你是汽车销售会话事实抽取助手。基于已经区分为销售和客户的ASR转写文本，只抽取场景事实、客户明确表达和销售实际行为；不得评分、诊断、推测、总结优劣或生成跟进策略。严格区分客户表达与销售行为，不把销售介绍当作客户需求。每项事实必须带说话人、时间戳和原文；无证据输出未提及；相反信息全部保留并标记信息冲突；禁止输出置信度。",
+    "userPromptTemplate": "请基于以下已修正ASR文本，一次性抽取配置中的7类事实。只记录对话中已经发生的场景、客户行为和销售行为；不得输出销售阶段、参与角色、执行人、质量等级、异议强弱、是否可跟进、意向等级或推荐的下一步动作。所有内容必须回溯到当前接待原文。\n\n{{转写文本}}",
+    "outputRules": [
+      "只输出事实字段",
+      "不得输出诊断、策略、扣分或生成卡片",
+      "证据必须来自当前接待原文"
+    ],
+    "fields": [
+      {
+        "key": "场景事实",
+        "category": "场景事实",
+        "field": "场景事实",
+        "meaning": "抽取本次对话涉及的业务场景和产品对象，不判断销售阶段。",
+        "modelPrompt": "提取本次对话中明确发生的业务场景，例如看车咨询、需求沟通、产品介绍、试驾沟通、报价沟通、竞品比较、金融或置换沟通、离店前沟通；同时记录明确提及的车型、版本或方案。不输出销售阶段和参与角色。",
+        "outputRequirement": "场景类型、讨论的产品",
+        "allowedValues": "场景类型：看车咨询、需求沟通、产品介绍、试驾沟通、报价沟通、竞品比较、金融沟通、置换沟通、交付咨询、离店前沟通、其他明确场景",
+        "enabled": true,
+        "requiresEvidence": true
+      },
+      {
+        "key": "客户需求与约束",
+        "category": "客户行为事实",
+        "field": "客户需求与约束",
+        "meaning": "抽取客户明确表达的需求、条件和限制。",
+        "modelPrompt": "只从客户原话提取使用场景、预算或价格范围、购买时间、决策相关表达、核心关注点、竞品或已有车辆。销售单方面介绍不能作为客户需求；未提及就留空。",
+        "outputRequirement": "使用场景、预算、购买时间、决策表达、关注点、竞品",
+        "allowedValues": "",
+        "enabled": true,
+        "requiresEvidence": true
+      },
+      {
+        "key": "客户购买与阻塞信号",
+        "category": "客户行为事实",
+        "field": "客户购买与阻塞信号",
+        "meaning": "抽取客户的购买倾向、沟通许可和阻塞信号，等级由规则层计算。",
+        "modelPrompt": "只从客户原话提取试驾意愿、询价、优惠、金融、置换、现车、交付、留资、到店、订金或下单等购买信号，以及明确拒绝、停止联系、无购买需求和其他阻塞信号。不得输出意向等级或是否可跟进。",
+        "outputRequirement": "购买信号、阻塞信号、跟进许可信号",
+        "allowedValues": "购买信号类型：试驾意愿、询价、优惠咨询、金融咨询、置换咨询、现车咨询、交付咨询、留资、到店、订金、下单；阻塞信号类型：明确拒绝、停止联系、暂无购买需求、暂缓购买、其他明确阻塞",
+        "enabled": true,
+        "requiresEvidence": true
+      },
+      {
+        "key": "客户异议事实",
+        "category": "客户行为事实",
+        "field": "客户异议事实",
+        "meaning": "抽取客户异议及其客观表现，强度由规则层计算。",
+        "modelPrompt": "提取客户表达的价格、产品、竞品、信任、决策、交付、售后等异议，记录异议类型、原话、出现次数、是否明确拒绝及阻碍的推进动作。不输出异议强弱。",
+        "outputRequirement": "异议类型、原话、出现次数、明确拒绝、阻碍动作",
+        "allowedValues": "异议类型：价格、产品、竞品、信任、决策、交付、售后、其他",
+        "enabled": true,
+        "requiresEvidence": true
+      },
+      {
+        "key": "销售需求挖掘行为",
+        "category": "销售行为事实",
+        "field": "销售需求挖掘行为",
+        "meaning": "抽取销售实际完成的需求询问和确认行为。",
+        "modelPrompt": "提取销售是否主动询问或复述确认客户的使用场景、预算、购买时间、决策相关表达、核心关注点、竞品或已有车辆；记录客户是否明确回答。只记录已发生行为，不判断挖掘质量或输出缺失项。",
+        "outputRequirement": "销售询问动作、客户回答",
+        "allowedValues": "询问主题：使用场景、预算、购买时间、决策相关、核心关注点、竞品、已有车辆",
+        "enabled": true,
+        "requiresEvidence": true
+      },
+      {
+        "key": "销售讲解与异议回应",
+        "category": "销售行为事实",
+        "field": "销售讲解与异议回应",
+        "meaning": "抽取销售讲解、需求对应关系和异议回应行为。",
+        "modelPrompt": "提取销售实际介绍的车型、版本、功能、卖点或方案；记录其与客户需求、关注点或异议的对应关系，并提取销售对异议的追问、解释、价值回应、证据、替代方案以及客户反应。不判断讲解是否优秀或异议处理是否合格。",
+        "outputRequirement": "客户需求、销售讲解、需求讲解对应关系、异议回应、正向行为候选",
+        "allowedValues": "回应动作：追问原因、解释说明、价值回应、提供证据、替代方案、后续测算；客户反应：接受、部分接受、继续质疑、拒绝、未明确",
+        "enabled": true,
+        "requiresEvidence": true
+      },
+      {
+        "key": "销售推进与跟进约定",
+        "category": "销售行为事实",
+        "field": "销售推进与跟进约定",
+        "meaning": "抽取销售已经实施的成交推进，以及录音中已经提出并得到回应的跟进约定。",
+        "modelPrompt": "提取销售实际完成的试驾邀约、报价结果、金融方案、置换评估、申请优惠、店长介入、留资、订金、下单和复店邀约。若销售在录音中明确提出后续联系，只记录跟进提议、明确时间、联系渠道和客户回应；不输出执行人、跟进目标、推荐的下一步动作或是否闭环。",
+        "outputRequirement": "已完成推进动作、跟进提议、跟进时间、联系渠道、客户回应",
+        "allowedValues": "推进动作：试驾邀约、报价、金融方案、置换评估、优惠申请、店长介入、留资、订金、下单、复店邀约；联系渠道：电话、微信、短信、到店、其他明确渠道",
+        "enabled": true,
+        "requiresEvidence": true
+      }
+    ]
+  },
+  "diagnosisLayer": {
+    "enabled": true,
+    "description": "诊断层只读取事实层输出，按配置规则命中销售接待问题。",
+    "checkObjects": [
+      {
+        "enabled": true,
+        "code": "greeted_customer",
+        "name": "问候开场",
+        "type": "SOP动作",
+        "description": "检查销售是否对客户完成基础问候或开场接待。",
+        "llmMeaning": "识别销售是否出现欢迎、您好、请问、今天想看什么等接待开场表达。",
+        "judgmentRule": "销售有明确问候或开场引导则视为完成；只有闲聊或客户先发起且销售未回应，不视为完成。",
+        "evidenceRequirement": "引用销售开场或客户刚进店后的原文。"
+      },
+      {
+        "enabled": true,
+        "code": "asked_use_case",
+        "name": "询问用途/用车场景",
+        "type": "SOP动作",
+        "description": "检查销售是否确认客户买车或看车的主要使用场景。",
+        "llmMeaning": "识别销售是否询问家用、通勤、商务、接送老人孩子、长途、自驾等用途。",
+        "judgmentRule": "销售主动询问或基于客户表达复述确认用途则完成；客户自说但销售没有确认可作为客户事实，不等同于销售动作完成。",
+        "evidenceRequirement": "引用销售询问用途或客户明确用途表达。"
+      },
+      {
+        "enabled": true,
+        "code": "asked_budget",
+        "name": "询问预算",
+        "type": "SOP动作",
+        "description": "检查销售是否确认客户预算、价格接受范围、首付或月供。",
+        "llmMeaning": "识别预算、价位、首付、月供、落地价、价格接受范围等预算相关表达。",
+        "judgmentRule": "销售主动询问预算或确认价格承受范围则完成；只报价不问预算不算完成。",
+        "evidenceRequirement": "引用预算、价格接受范围、首付或月供相关原文。"
+      },
+      {
+        "enabled": true,
+        "code": "asked_purchase_timeline",
+        "name": "询问购车周期",
+        "type": "SOP动作",
+        "description": "检查销售是否确认客户计划什么时候购买或再次到店。",
+        "llmMeaning": "识别今天、近期、月底、周末、什么时候定、购车时间、复店时间等周期表达。",
+        "judgmentRule": "销售主动询问或确认购买时间则完成；客户只说随便看看且销售未追问不算完成。",
+        "evidenceRequirement": "引用购买时间、复店时间或周期相关原文。"
+      },
+      {
+        "enabled": true,
+        "code": "asked_decision_maker",
+        "name": "询问决策人/影响人",
+        "type": "SOP动作",
+        "description": "检查销售是否确认谁参与购买决策。",
+        "llmMeaning": "识别家人、老婆、老公、父母、孩子、领导、朋友、一起商量等决策链表达。",
+        "judgmentRule": "销售主动询问或确认决策人则完成；客户提到家人但销售未继续确认时，只形成客户事实。",
+        "evidenceRequirement": "引用决策人、影响人或商量对象相关原文。"
+      },
+      {
+        "enabled": true,
+        "code": "introduced_product_by_need",
+        "name": "结合需求讲解产品",
+        "type": "SOP动作",
+        "description": "检查销售讲解是否围绕客户已表达需求。",
+        "llmMeaning": "识别销售是否把空间、安全、智能、价格、舒适、续航等卖点与客户需求进行匹配。",
+        "judgmentRule": "销售讲解明确回应客户关注点则完成；泛泛介绍配置但没有对应客户需求，不算完成。",
+        "evidenceRequirement": "引用客户需求和销售对应讲解的原文。"
+      },
+      {
+        "enabled": true,
+        "code": "invited_test_drive",
+        "name": "邀约试驾",
+        "type": "SOP动作",
+        "description": "检查销售是否推进客户试驾或体验。",
+        "llmMeaning": "识别试驾、体验、开一下、约试驾、带家人试驾等表达。",
+        "judgmentRule": "销售明确提出试驾或约定体验则完成；仅客户说还没试过但销售没安排，不算完成。",
+        "evidenceRequirement": "引用试驾邀约或体验安排原文。"
+      },
+      {
+        "enabled": true,
+        "code": "quoted_price",
+        "name": "报价/解释费用",
+        "type": "SOP动作",
+        "description": "检查销售是否报价或解释落地价、优惠、费用构成。",
+        "llmMeaning": "识别报价、落地价、优惠、首付、月供、保险、上牌、金融等费用表达。",
+        "judgmentRule": "销售给出价格信息或费用方案则完成；客户问价格但销售回避，不算完成。",
+        "evidenceRequirement": "引用报价、优惠或费用构成原文。"
+      },
+      {
+        "enabled": true,
+        "code": "handled_objection",
+        "name": "处理客户异议",
+        "type": "SOP动作",
+        "description": "检查销售是否对客户异议进行解释、拆解或推进。",
+        "llmMeaning": "识别客户提出价格、竞品、家人、交付、售后、金融等异议后，销售是否有对应回应。",
+        "judgmentRule": "销售回应能针对异议提供解释、方案或下一步动作则完成；简单敷衍或转移话题不算完成。",
+        "evidenceRequirement": "引用客户异议和销售回应原文。"
+      },
+      {
+        "enabled": true,
+        "code": "confirmed_next_followup",
+        "name": "确认下一步跟进",
+        "type": "SOP动作",
+        "description": "检查销售是否在离店或报价后确认下一步安排。",
+        "llmMeaning": "识别明天联系、发资料、加微信、约复店、带家人再来、下次试驾等闭环动作。",
+        "judgmentRule": "销售明确约定下一步动作、时间或渠道则完成；只说再联系但无具体动作可判为弱闭环。",
+        "evidenceRequirement": "引用跟进时间、渠道、资料发送或复店安排原文。"
+      },
+      {
+        "enabled": true,
+        "code": "need_discovery",
+        "name": "销售需求确认完整度",
+        "type": "销售行为质量",
+        "description": "检查销售是否主动询问或复述确认用途、预算、周期和决策人。",
+        "llmMeaning": "客户主动表达形成客户事实；销售是否询问或复述确认形成销售行为事实，两者分开判断。",
+        "judgmentRule": "销售确认动作不足时命中；不得把客户已表达的用途、预算或关注点写成缺失。",
+        "evidenceRequirement": "逐项引用事实层的已明确、部分明确、未明确状态及销售确认动作。"
+      },
+      {
+        "enabled": true,
+        "code": "decision_chain_status",
+        "name": "决策链状态",
+        "type": "客户画像",
+        "description": "检查客户决策链是否明确和闭合。",
+        "llmMeaning": "识别客户是否需要家人、配偶、领导、朋友参与决策，以及销售是否形成后续闭环。",
+        "judgmentRule": "客户提到影响人但未确认共同看车、复店或跟进安排时，视为决策链未闭合。",
+        "evidenceRequirement": "引用客户提到影响人和销售跟进安排原文。"
+      },
+      {
+        "enabled": true,
+        "code": "价格",
+        "name": "价格/金融异议",
+        "type": "客户异议",
+        "description": "检查客户是否对价格、预算、优惠、首付、月供或金融方案存在异议。",
+        "llmMeaning": "识别贵、预算不够、比竞品贵、首付/月供压力、优惠不满意等表达。",
+        "judgmentRule": "客户明确表达价格顾虑且销售未有效拆解时，可命中价格异议处理不足。",
+        "evidenceRequirement": "引用客户价格异议和销售回应原文。"
+      },
+      {
+        "enabled": true,
+        "code": "竞品",
+        "name": "竞品异议",
+        "type": "客户异议",
+        "description": "检查客户是否提及竞品并进行对比或质疑。",
+        "llmMeaning": "识别比亚迪、特斯拉、理想、问界、其他店、别家、同级车型等竞品表达。",
+        "judgmentRule": "客户提及竞品但销售未澄清比较维度或差异化回应时，可命中竞品异议未处理。",
+        "evidenceRequirement": "引用竞品提及和销售回应原文。"
+      },
+      {
+        "enabled": true,
+        "code": "intent_level",
+        "name": "客户意向等级",
+        "type": "客户画像",
+        "description": "检查客户当前购买意向水平。",
+        "llmMeaning": "识别试驾、报价、复店、下订、犹豫、再看看、不急等意向信号。",
+        "judgmentRule": "高意向或中高意向客户叠加异议、未闭环等问题时，可触发高意向流失风险。",
+        "evidenceRequirement": "引用购买信号、异议和下一步安排相关原文。"
+      },
+      {
+        "enabled": true,
+        "code": "risk_segments",
+        "name": "合规/体验风险片段",
+        "type": "风险红线",
+        "description": "检查是否出现承诺、误导、投诉或服务体验风险。",
+        "llmMeaning": "识别保证最低价、贷款肯定通过、绝对承诺、贬低竞品、客户投诉或明显不满等风险表达。",
+        "judgmentRule": "出现高风险表达时默认进入人工复核，不直接作为最终责任认定。",
+        "evidenceRequirement": "引用风险原话、说话人和时间戳。"
+      }
+    ],
+    "rules": [
+      {
+        "enabled": true,
+        "ruleId": "reception-no-greeting",
+        "issue": "未问候开场",
+        "category": "接待基础",
+        "riskLevel": "低",
+        "conditionType": "missing_sop",
+        "conditionField": "greeted_customer",
+        "reason": "问候开场缺失",
+        "recoverable": false,
+        "manualReviewRequired": false,
+        "evidenceSelector": "greeted_customer"
+      },
+      {
+        "enabled": true,
+        "ruleId": "need-discovery-insufficient",
+        "issue": "销售需求确认不足",
+        "category": "需求挖掘",
+        "riskLevel": "中",
+        "conditionType": "sop_count_lte",
+        "conditionField": "need_discovery",
+        "reason": "销售未充分询问或复述确认关键需求；客户已主动表达的事实不计为缺失",
+        "recoverable": true,
+        "manualReviewRequired": false,
+        "evidenceSelector": "need_discovery"
+      },
+      {
+        "enabled": true,
+        "ruleId": "budget-not-confirmed",
+        "issue": "预算未确认",
+        "category": "需求挖掘",
+        "riskLevel": "中",
+        "conditionType": "missing_sop_and_fact",
+        "conditionField": "asked_budget",
+        "reason": "未确认客户预算或价格承受范围",
+        "recoverable": true,
+        "manualReviewRequired": false,
+        "evidenceSelector": "asked_budget"
+      },
+      {
+        "enabled": true,
+        "ruleId": "timeline-not-confirmed",
+        "issue": "购车周期未确认",
+        "category": "需求挖掘",
+        "riskLevel": "中",
+        "conditionType": "missing_sop_and_fact",
+        "conditionField": "asked_purchase_timeline",
+        "reason": "未确认客户购买周期",
+        "recoverable": true,
+        "manualReviewRequired": false,
+        "evidenceSelector": "asked_purchase_timeline"
+      },
+      {
+        "enabled": true,
+        "ruleId": "decision-chain-open",
+        "issue": "决策链未闭合",
+        "category": "异议处理",
+        "riskLevel": "高",
+        "conditionType": "decision_chain_open",
+        "conditionField": "decision_chain_status",
+        "reason": "客户提到家人/领导等决策人，但未形成复店或跟进闭环",
+        "recoverable": true,
+        "manualReviewRequired": true,
+        "evidenceSelector": "decision_chain_status"
+      },
+      {
+        "enabled": true,
+        "ruleId": "price-objection-unhandled",
+        "issue": "价格异议处理不足",
+        "category": "报价议价",
+        "riskLevel": "高",
+        "conditionType": "objection_unhandled",
+        "conditionField": "价格",
+        "reason": "客户出现价格/预算异议，销售未有效拆解",
+        "recoverable": true,
+        "manualReviewRequired": true,
+        "evidenceSelector": "价格"
+      },
+      {
+        "enabled": true,
+        "ruleId": "competitor-objection-unhandled",
+        "issue": "竞品异议未处理",
+        "category": "异议处理",
+        "riskLevel": "中高",
+        "conditionType": "objection_unhandled",
+        "conditionField": "竞品",
+        "reason": "客户提及竞品但销售未澄清比较维度或差异化回应",
+        "recoverable": true,
+        "manualReviewRequired": false,
+        "evidenceSelector": "竞品"
+      },
+      {
+        "enabled": true,
+        "ruleId": "product-mismatch",
+        "issue": "产品讲解偏离客户需求",
+        "category": "产品讲解",
+        "riskLevel": "中",
+        "conditionType": "product_mismatch",
+        "conditionField": "introduced_product_by_need",
+        "reason": "销售讲解未围绕客户关注点展开",
+        "recoverable": true,
+        "manualReviewRequired": false,
+        "evidenceSelector": "introduced_product_by_need"
+      },
+      {
+        "enabled": true,
+        "ruleId": "test-drive-not-promoted",
+        "issue": "试驾推进不足",
+        "category": "体验推进",
+        "riskLevel": "中",
+        "conditionType": "missing_sop_when_intent",
+        "conditionField": "invited_test_drive",
+        "reason": "客户有意向但未推进试驾或体验",
+        "recoverable": true,
+        "manualReviewRequired": false,
+        "evidenceSelector": "invited_test_drive"
+      },
+      {
+        "enabled": true,
+        "ruleId": "quote-followup-missing",
+        "issue": "报价后推进不足",
+        "category": "报价议价",
+        "riskLevel": "高",
+        "conditionType": "quote_without_followup",
+        "conditionField": "quoted_price",
+        "reason": "报价后没有确认预算差距或下一步",
+        "recoverable": true,
+        "manualReviewRequired": true,
+        "evidenceSelector": "quoted_price"
+      },
+      {
+        "enabled": true,
+        "ruleId": "followup-closure-missing",
+        "issue": "离店跟进闭环缺失",
+        "category": "成交闭环",
+        "riskLevel": "高",
+        "conditionType": "missing_sop",
+        "conditionField": "confirmed_next_followup",
+        "reason": "未明确下次联系、资料发送或复店安排",
+        "recoverable": true,
+        "manualReviewRequired": true,
+        "evidenceSelector": "confirmed_next_followup"
+      },
+      {
+        "enabled": true,
+        "ruleId": "high-intent-loss-risk",
+        "issue": "高意向客户流失风险",
+        "category": "成交闭环",
+        "riskLevel": "高",
+        "conditionType": "high_intent_with_high_risk",
+        "conditionField": "intent_level",
+        "reason": "中高/高意向客户存在高风险问题",
+        "recoverable": true,
+        "manualReviewRequired": true,
+        "evidenceSelector": "intent_level"
+      },
+      {
+        "enabled": true,
+        "ruleId": "compliance-review-required",
+        "issue": "合规风险需人工复核",
+        "category": "合规风险",
+        "riskLevel": "高",
+        "conditionType": "risk_segments_present",
+        "conditionField": "risk_segments",
+        "reason": "出现承诺、误导、投诉等风险片段",
+        "recoverable": false,
+        "manualReviewRequired": true,
+        "evidenceSelector": "risk_segments"
+      }
+    ],
+    "scoring": {
+      "baseScore": 100,
+      "highPenalty": 8,
+      "mediumHighPenalty": 5,
+      "mediumPenalty": 3,
+      "lowPenalty": 0
+    },
+    "derivedRules": {
+      "needDiscovery": {
+        "sufficientMin": 3,
+        "generalMin": 2,
+        "totalCoreItems": 4
+      },
+      "productExplanation": {
+        "matchedPairMin": 1
+      },
+      "objectionHandling": {
+        "effectiveActionMin": 2
+      },
+      "followUpClosure": {
+        "requiredElements": [
+          "follow_up_offer",
+          "followup_time",
+          "customer_response"
+        ]
+      },
+      "strengthSummary": {
+        "maxItems": 3
+      },
+      "weaknessSummary": {
+        "maxItems": 5
+      }
+    }
+  },
+  "strategyLayer": {
+    "enabled": true,
+    "unmatchedPolicy": "显示待配置策略，不自动编造策略",
+    "strategies": [
+      {
+        "strategyId": "greeting-repair",
+        "category": "关系修复",
+        "triggerIssues": [
+          "未问候开场"
+        ],
+        "priority": 55,
+        "action": "首次跟进时结合客户称呼和本次看车内容进行个性化问候，说明服务身份并确认客户是否方便沟通",
+        "timing": "当天首次跟进时",
+        "channel": "微信优先，必要时电话",
+        "materials": [
+          "本次接待摘要",
+          "个性化开场话术"
+        ],
+        "managerIntervention": false
+      },
+      {
+        "strategyId": "need-discovery-repair",
+        "category": "需求补全",
+        "triggerIssues": [
+          "销售需求确认不足"
+        ],
+        "priority": 82,
+        "action": "复用事实层已知需求，只确认仍未明确的用途、预算、核心关注点、决策人或购车周期，再匹配车型与方案",
+        "timing": "24小时内",
+        "channel": "电话或微信",
+        "materials": [
+          "需求确认清单",
+          "车型与需求匹配资料"
+        ],
+        "managerIntervention": false
+      },
+      {
+        "strategyId": "purchase-timeline-confirmation",
+        "category": "购车计划确认",
+        "triggerIssues": [
+          "购车周期未确认"
+        ],
+        "priority": 78,
+        "action": "确认客户计划用车时间及牌照、置换、交付等关键节点，并约定与时间计划匹配的试驾、报价或复店安排",
+        "timing": "24小时内",
+        "channel": "电话优先，微信确认",
+        "materials": [
+          "购车时间确认清单",
+          "交付周期与近期活动说明"
+        ],
+        "managerIntervention": false
+      },
+      {
+        "strategyId": "price-objection-followup",
+        "category": "价格异议",
+        "triggerIssues": [
+          "价格异议处理不足",
+          "报价后推进不足"
+        ],
+        "priority": 90,
+        "action": "确认预算差距，发送落地价拆解和金融方案",
+        "timing": "24小时内",
+        "channel": "微信或电话",
+        "materials": [
+          "报价单",
+          "金融方案",
+          "权益说明"
+        ],
+        "managerIntervention": true
+      },
+      {
+        "strategyId": "test-drive-invite",
+        "category": "试驾推进",
+        "triggerIssues": [
+          "试驾推进不足"
+        ],
+        "priority": 75,
+        "action": "围绕客户关注点邀约试驾体验",
+        "timing": "48小时内",
+        "channel": "电话或微信",
+        "materials": [
+          "试驾路线",
+          "体验重点清单"
+        ],
+        "managerIntervention": false
+      },
+      {
+        "strategyId": "decision-maker-return",
+        "category": "决策链闭合",
+        "triggerIssues": [
+          "决策链未闭合"
+        ],
+        "priority": 85,
+        "action": "邀约家人或关键决策人二次到店",
+        "timing": "次日中午前",
+        "channel": "电话优先",
+        "materials": [
+          "家用场景卖点",
+          "空间/安全说明",
+          "费用拆解"
+        ],
+        "managerIntervention": true
+      },
+      {
+        "strategyId": "competitor-compare",
+        "category": "竞品对比",
+        "triggerIssues": [
+          "竞品异议未处理"
+        ],
+        "priority": 80,
+        "action": "确认竞品型号和比较维度，发送差异化对比材料",
+        "timing": "当天",
+        "channel": "微信",
+        "materials": [
+          "竞品配置对比表",
+          "客户关注点卖点说明"
+        ],
+        "managerIntervention": false
+      }
+    ],
+    "legacyTemplates": {
+      "价格异议处理不足": {
+        "strategyId": "price-objection-followup",
+        "action": "确认预算差距，发送落地价拆解和金融方案",
+        "timing": "24小时内",
+        "channel": "微信或电话",
+        "materials": [
+          "报价单",
+          "金融方案",
+          "权益说明"
+        ],
+        "templateKey": "price_followup"
+      },
+      "竞品异议未处理": {
+        "strategyId": "competitor-compare",
+        "action": "确认竞品型号和比较维度，发送差异化对比材料",
+        "timing": "当天",
+        "channel": "微信",
+        "materials": [
+          "竞品配置对比表",
+          "客户关注点卖点说明"
+        ],
+        "templateKey": "competitor_followup"
+      },
+      "决策链未闭合": {
+        "strategyId": "decision-maker-return",
+        "action": "邀约家人或关键决策人二次到店",
+        "timing": "次日中午前",
+        "channel": "电话优先",
+        "materials": [
+          "家用场景卖点",
+          "空间/安全说明",
+          "费用拆解"
+        ],
+        "templateKey": "decision_followup"
+      },
+      "试驾推进不足": {
+        "strategyId": "test-drive-invite",
+        "action": "围绕客户关注点邀约试驾体验",
+        "timing": "48小时内",
+        "channel": "电话或微信",
+        "materials": [
+          "试驾路线",
+          "体验重点清单"
+        ],
+        "templateKey": "test_drive_followup"
+      },
+      "报价后推进不足": {
+        "strategyId": "quote-followup",
+        "action": "跟进报价反馈，确认预算差距和下一步动作",
+        "timing": "次日上午",
+        "channel": "微信",
+        "materials": [
+          "报价拆解",
+          "优惠有效期",
+          "置换/金融方案"
+        ],
+        "templateKey": "quote_followup"
+      },
+      "离店跟进闭环缺失": {
+        "strategyId": "closure-repair",
+        "action": "补充一次有内容的离店跟进并约定下次沟通",
+        "timing": "当天",
+        "channel": "微信",
+        "materials": [
+          "本次沟通摘要",
+          "下一步确认问题"
+        ],
+        "templateKey": "closure_followup"
+      },
+      "销售需求确认不足": {
+        "strategyId": "need-discovery-repair",
+        "action": "复用事实层已知需求，只补问仍未明确的信息",
+        "timing": "下次触达时",
+        "channel": "电话",
+        "materials": [
+          "需求补问清单"
+        ],
+        "templateKey": "need_followup"
+      }
+    }
+  },
+  "generationLayer": {
+    "enabled": true,
+    "defaultMode": "template",
+    "allowLlmRewrite": false,
+    "rewriteBoundary": "只允许润色表达，不允许重新判断事实、诊断或策略。",
+    "specs": {
+      "card_customer_level": {
+        "type": "客户意向等级",
+        "status": "规则计算",
+        "style": "只依据客户原话关键词累计分数，展示命中词、分数、等级和证据；三级触发店长介入预警",
+        "mustInclude": [
+          "客户等级",
+          "累计分数",
+          "命中关键词",
+          "客户原话证据",
+          "店长介入状态"
+        ],
+        "forbidden": [
+          "不得统计销售原话",
+          "不得把模型摘要当作命中证据",
+          "不得无证据强制打级"
+        ],
+        "actions": [
+          "确认等级",
+          "调整等级",
+          "店长已介入"
+        ]
+      },
+      "card_loss": {
+        "type": "败单分析卡片",
+        "status": "需结合CRM/人工确认",
+        "style": "候选归因表达，必须标记可挽回性和人工确认状态",
+        "mustInclude": [
+          "候选原因",
+          "风险等级",
+          "是否可挽回",
+          "证据"
+        ],
+        "forbidden": [
+          "无CRM/POS/人工反馈时不得输出确定败单"
+        ],
+        "actions": [
+          "认可",
+          "修改原因",
+          "标记可挽回",
+          "标记不可挽回"
+        ]
+      },
+      "card_script": {
+        "type": "优秀话术候选",
+        "status": "待店长/内训师审核",
+        "style": "只输出候选，不直接入库；必须包含客户问题、销售原话、候选原因",
+        "mustInclude": [
+          "场景",
+          "销售原话",
+          "客户问题",
+          "候选原因"
+        ],
+        "forbidden": [
+          "不得直接判定为官方优秀话术"
+        ],
+        "actions": [
+          "通过话术",
+          "驳回话术",
+          "优化后再审"
+        ]
+      },
+      "card_risk": {
+        "type": "风险提醒",
+        "status": "质检复核",
+        "style": "风险必须进入人工复核，表达克制，不扩大责任结论",
+        "mustInclude": [
+          "风险类型",
+          "证据",
+          "复核动作"
+        ],
+        "forbidden": [
+          "不得直接定责"
+        ],
+        "actions": [
+          "确认风险",
+          "驳回风险",
+          "加入复核队列"
+        ]
+      }
+    },
+    "customerLevelRules": {
+      "enabled": true,
+      "speakerRule": "仅统计客户或主客户原话，销售、未知角色和模型摘要不计分",
+      "countMode": "同一关键词每通会话仅计一次",
+      "levels": [
+        {
+          "level": "一级",
+          "name": "基础咨询意向",
+          "description": "弱意向，仅常规了解，无明确购车信号",
+          "score": 1,
+          "threshold": 1,
+          "keywords": [
+            "之前看过",
+            "之前了解过",
+            "新款么",
+            "保险多少钱",
+            "交付中心",
+            "在哪提车",
+            "5.26指标",
+            "推荐来看"
+          ],
+          "excludedPhrases": []
+        },
+        {
+          "level": "二级",
+          "name": "深度了解意向",
+          "description": "中意向，主动关注购车成本、用车周期，有潜在购车需求",
+          "score": 3,
+          "threshold": 3,
+          "keywords": [
+            "试驾过",
+            "试车位",
+            "等车周期",
+            "现车",
+            "金融方案",
+            "优惠",
+            "算价",
+            "送什么",
+            "交车时间",
+            "能上门吗",
+            "朋友刚提车",
+            "指标到期"
+          ],
+          "excludedPhrases": []
+        },
+        {
+          "level": "三级",
+          "name": "高意向核心词",
+          "description": "强意向，直接触及订车、成交、置换落地，具备即时成交可能",
+          "score": 6,
+          "threshold": 6,
+          "keywords": [
+            "订车",
+            "置换",
+            "报废",
+            "近期用车",
+            "合适就定",
+            "首付",
+            "月供",
+            "还有什么权益"
+          ],
+          "excludedPhrases": [
+            "不订车",
+            "不置换",
+            "不报废",
+            "没有近期用车计划",
+            "不需要首付",
+            "不考虑月供"
+          ]
+        }
+      ],
+      "managerAlert": {
+        "enabled": true,
+        "triggerLevel": "三级",
+        "channel": "店长企业微信群机器人",
+        "recipientRole": "店长",
+        "webhookEnv": "MANAGER_WECHAT_WEBHOOK"
+      }
+    }
+  },
+  "feedbackLayer": {
+    "enabled": true,
+    "actors": [
+      "sales",
+      "manager",
+      "operations",
+      "qa"
+    ],
+    "actionsByActor": {
+      "sales": [
+        "采纳",
+        "不适用",
+        "已跟进",
+        "复制话术",
+        "修改后使用"
+      ],
+      "manager": [
+        "认可",
+        "修改原因",
+        "标记可挽回",
+        "通过话术",
+        "驳回话术",
+        "加入陪练",
+        "店长已介入"
+      ],
+      "operations": [
+        "查看准确率",
+        "记录误报",
+        "调整策略权重",
+        "沉淀标签效果"
+      ]
+    },
+    "targetTypes": [
+      "fact_field",
+      "diagnosis",
+      "strategy",
+      "generated_card",
+      "transcript_correction",
+      "business_outcome"
+    ],
+    "overwritePolicy": "反馈只记录事件和效果；覆盖事实必须走人工修正版本。"
+  },
+  "customerInsightRules": {
+    "description": "客户标签由事实信号和配置规则计算，不由大模型直接输出等级。",
+    "objectionStrength": {
+      "highBlockedActionMin": 1,
+      "highOccurrenceMin": 2
+    },
+    "intent": {
+      "highMin": 7,
+      "mediumHighMin": 4,
+      "mediumMin": 1,
+      "weights": {
+        "order_or_deposit": 8,
+        "near_purchase_timeline": 3,
+        "quote_or_discount": 2,
+        "test_drive": 2,
+        "next_step_agreed": 2,
+        "clear_need_or_budget": 1,
+        "explicit_refusal": -8,
+        "no_purchase_need": -6
+      }
+    },
+    "followUp": {
+      "highIntentLevels": [
+        "高意向",
+        "中高意向"
+      ],
+      "stopOnNoContactRequest": true,
+      "stopOnInvalidReception": true
+    }
+  },
+  "advancedCapabilities": {
+    "lossAnalysis": {
+      "enabled": true,
+      "layerDescription": "诊断层识别候选原因，生成层组织败单分析，反馈层确认真实业务结果。",
+      "requireBusinessOutcome": true,
+      "candidateOnlyWithoutOutcome": true,
+      "reviewerRoles": [
+        "店长",
+        "运营"
+      ],
+      "reasonRules": [
+        {
+          "enabled": true,
+          "name": "价格价值未达成一致",
+          "diagnosisKeywords": [
+            "价格",
+            "报价"
+          ],
+          "evidenceRequirement": "引用客户价格异议、销售回应和后续推进证据。"
+        },
+        {
+          "enabled": true,
+          "name": "竞品比较未有效回应",
+          "diagnosisKeywords": [
+            "竞品"
+          ],
+          "evidenceRequirement": "引用客户竞品表达和销售差异化回应证据。"
+        },
+        {
+          "enabled": true,
+          "name": "决策链未闭合",
+          "diagnosisKeywords": [
+            "决策链",
+            "家人"
+          ],
+          "evidenceRequirement": "引用决策人表达和是否安排共同体验或复店。"
+        },
+        {
+          "enabled": true,
+          "name": "体验或试驾推进不足",
+          "diagnosisKeywords": [
+            "试驾",
+            "体验"
+          ],
+          "evidenceRequirement": "引用客户体验意愿和销售邀约安排。"
+        },
+        {
+          "enabled": true,
+          "name": "离店后续动作未闭环",
+          "diagnosisKeywords": [
+            "跟进",
+            "闭环",
+            "推进不足"
+          ],
+          "evidenceRequirement": "引用下一步动作、时间、渠道和客户是否同意。"
+        }
+      ]
+    },
+    "salesCapability": {
+      "enabled": true,
+      "layerDescription": "诊断层将接待问题映射到能力维度，生成层输出本次表现；销售画像需汇总多次接待。",
+      "minimumSessionCount": 10,
+      "evidenceSampleCount": 3,
+      "excludedDimensions": [
+        "合规表现",
+        "业务结果",
+        "改进趋势"
+      ],
+      "dimensions": [
+        {
+          "enabled": true,
+          "name": "需求挖掘",
+          "diagnosisKeywords": [
+            "需求挖掘",
+            "预算",
+            "购车周期",
+            "决策人"
+          ]
+        },
+        {
+          "enabled": true,
+          "name": "产品讲解匹配",
+          "diagnosisKeywords": [
+            "产品讲解",
+            "客户需求"
+          ]
+        },
+        {
+          "enabled": true,
+          "name": "异议识别",
+          "diagnosisKeywords": [
+            "异议"
+          ]
+        },
+        {
+          "enabled": true,
+          "name": "异议处理",
+          "diagnosisKeywords": [
+            "价格异议",
+            "竞品异议",
+            "决策链"
+          ]
+        },
+        {
+          "enabled": true,
+          "name": "试驾推进",
+          "diagnosisKeywords": [
+            "试驾",
+            "体验推进"
+          ]
+        },
+        {
+          "enabled": true,
+          "name": "报价议价",
+          "diagnosisKeywords": [
+            "报价",
+            "价格"
+          ]
+        },
+        {
+          "enabled": true,
+          "name": "成交推进",
+          "diagnosisKeywords": [
+            "成交",
+            "推进不足",
+            "流失风险"
+          ]
+        },
+        {
+          "enabled": true,
+          "name": "跟进闭环",
+          "diagnosisKeywords": [
+            "跟进",
+            "闭环"
+          ]
+        },
+        {
+          "enabled": true,
+          "name": "倾听追问",
+          "diagnosisKeywords": [
+            "倾听",
+            "追问",
+            "打断"
+          ]
+        },
+        {
+          "enabled": true,
+          "name": "沟通表达",
+          "diagnosisKeywords": [
+            "回应机械",
+            "表达",
+            "服务态度"
+          ]
+        }
+      ]
+    },
+    "excellentScript": {
+      "enabled": true,
+      "layerDescription": "事实层保留客户触发、销售回应、客户反应和时序证据；规则引擎识别会话状态跃迁，审核与业务结果验证后才可入库。",
+      "autoPublish": false,
+      "globalWindow": {
+        "customerTriggerTurns": 3,
+        "customerTriggerSeconds": 60,
+        "salesResponseTurns": 5,
+        "salesResponseSeconds": 120,
+        "customerReactionTurns": 3,
+        "customerReactionSeconds": 90,
+        "maxEpisodeSeconds": 180,
+        "maxCandidates": 3,
+        "minimumCustomerReactionLevel": 1
+      },
+      "sceneGoals": [
+        {
+          "enabled": true,
+          "name": "需求挖掘",
+          "objective": "帮助客户明确用途、预算、周期、决策人或核心关注点。",
+          "validResult": "客户新增披露至少两项需求信息，且销售完成一次复述确认。",
+          "matchTerms": [
+            "用途",
+            "预算",
+            "周期",
+            "决策人",
+            "关注点",
+            "需求"
+          ]
+        },
+        {
+          "enabled": true,
+          "name": "产品讲解",
+          "objective": "把客户需求与车型功能、利益和适用场景建立对应关系。",
+          "validResult": "客户确认相关性、继续追问具体功能，或愿意进入体验环节。",
+          "matchTerms": [
+            "功能",
+            "配置",
+            "空间",
+            "安全",
+            "续航",
+            "座椅",
+            "产品"
+          ]
+        },
+        {
+          "enabled": true,
+          "name": "试驾推进",
+          "objective": "把客户关注点转化为可验证的试驾体验任务。",
+          "validResult": "客户同意试驾或明确可执行的试驾时间。",
+          "matchTerms": [
+            "试驾",
+            "体验",
+            "试车"
+          ]
+        },
+        {
+          "enabled": true,
+          "name": "价格金融",
+          "objective": "确认预算边界并提供客户能理解的价格、首付、月供或权益方案。",
+          "validResult": "客户接受算价、继续讨论付款方案或确认报价边界。",
+          "matchTerms": [
+            "价格",
+            "预算",
+            "优惠",
+            "首付",
+            "月供",
+            "金融",
+            "权益"
+          ]
+        },
+        {
+          "enabled": true,
+          "name": "异议处理",
+          "objective": "澄清异议原因，提供证据或替代方案，并确认异议是否下降。",
+          "validResult": "客户异议软化、接受替代方案或愿意继续推进。",
+          "matchTerms": [
+            "异议",
+            "顾虑",
+            "担心",
+            "不方便",
+            "不合适",
+            "没有"
+          ]
+        },
+        {
+          "enabled": true,
+          "name": "竞品对比",
+          "objective": "按客户关注的客观维度比较差异并回到客户适配性。",
+          "validResult": "客户愿意重新比较、继续体验或追问差异。",
+          "matchTerms": [
+            "竞品",
+            "对比",
+            "别家",
+            "零跑",
+            "理想",
+            "问界"
+          ]
+        },
+        {
+          "enabled": true,
+          "name": "家人决策",
+          "objective": "识别共同决策链并促成家人共同体验或材料共享。",
+          "validResult": "客户同意与家人沟通、共同到店或接收决策材料。",
+          "matchTerms": [
+            "家人",
+            "老婆",
+            "老公",
+            "父母",
+            "商量",
+            "决策"
+          ]
+        },
+        {
+          "enabled": true,
+          "name": "成交推进",
+          "objective": "推动报价、锁车、订车、资料准备或成交确认。",
+          "validResult": "客户同意报价、准备资料、锁车或订车。",
+          "matchTerms": [
+            "报价",
+            "锁车",
+            "订车",
+            "下订",
+            "成交",
+            "资料"
+          ]
+        },
+        {
+          "enabled": true,
+          "name": "跟进闭环",
+          "objective": "把后续动作、时间、渠道和双方责任明确下来。",
+          "validResult": "客户明确接受下一步动作和时间安排。",
+          "matchTerms": [
+            "跟进",
+            "联系",
+            "微信",
+            "电话",
+            "复店",
+            "明天",
+            "时间"
+          ]
+        }
+      ],
+      "behaviorStructures": [
+        {
+          "enabled": true,
+          "scene": "需求挖掘",
+          "steps": [
+            "开放提问",
+            "针对追问",
+            "复述确认"
+          ],
+          "minimumSteps": 2,
+          "requiredSteps": [
+            "复述确认"
+          ]
+        },
+        {
+          "enabled": true,
+          "scene": "产品讲解",
+          "steps": [
+            "承接需求",
+            "说明功能",
+            "解释客户利益",
+            "确认理解"
+          ],
+          "minimumSteps": 3,
+          "requiredSteps": [
+            "承接需求"
+          ]
+        },
+        {
+          "enabled": true,
+          "scene": "试驾推进",
+          "steps": [
+            "关联关注点",
+            "设计体验项",
+            "发出邀约",
+            "确认时间"
+          ],
+          "minimumSteps": 3,
+          "requiredSteps": [
+            "发出邀约"
+          ]
+        },
+        {
+          "enabled": true,
+          "scene": "价格金融",
+          "steps": [
+            "确认预算边界",
+            "拆解价格构成",
+            "提供可选方案",
+            "确认接受程度"
+          ],
+          "minimumSteps": 3,
+          "requiredSteps": [
+            "确认预算边界"
+          ]
+        },
+        {
+          "enabled": true,
+          "scene": "异议处理",
+          "steps": [
+            "接纳情绪",
+            "澄清原因",
+            "回应价值",
+            "提供证据或方案",
+            "确认异议变化"
+          ],
+          "minimumSteps": 3,
+          "requiredSteps": [
+            "澄清原因",
+            "确认异议变化"
+          ]
+        },
+        {
+          "enabled": true,
+          "scene": "竞品对比",
+          "steps": [
+            "确认比较维度",
+            "引用客观事实",
+            "解释差异",
+            "回到客户适配",
+            "确认选择倾向"
+          ],
+          "minimumSteps": 3,
+          "requiredSteps": [
+            "确认比较维度"
+          ]
+        },
+        {
+          "enabled": true,
+          "scene": "家人决策",
+          "steps": [
+            "识别决策角色",
+            "确认关切",
+            "提供共同决策材料",
+            "约定共同沟通"
+          ],
+          "minimumSteps": 3,
+          "requiredSteps": [
+            "识别决策角色"
+          ]
+        },
+        {
+          "enabled": true,
+          "scene": "成交推进",
+          "steps": [
+            "确认购买条件",
+            "给出推进选项",
+            "说明所需材料",
+            "确认下一动作"
+          ],
+          "minimumSteps": 3,
+          "requiredSteps": [
+            "确认下一动作"
+          ]
+        },
+        {
+          "enabled": true,
+          "scene": "跟进闭环",
+          "steps": [
+            "回顾共识",
+            "明确动作",
+            "明确时间",
+            "明确渠道",
+            "客户确认"
+          ],
+          "minimumSteps": 4,
+          "requiredSteps": [
+            "明确动作",
+            "明确时间",
+            "客户确认"
+          ]
+        }
+      ],
+      "customerReactions": [
+        {
+          "level": 0,
+          "name": "无效反应",
+          "meaning": "仅有嗯、好、知道了等弱回应，或没有客户后续反应。",
+          "examples": [
+            "嗯",
+            "好",
+            "知道了",
+            "再说吧"
+          ]
+        },
+        {
+          "level": 1,
+          "name": "新增信息披露",
+          "meaning": "客户补充用途、预算、关注点、周期、决策人或异议原因。",
+          "examples": [
+            "主要是",
+            "预算",
+            "我比较在意",
+            "因为"
+          ]
+        },
+        {
+          "level": 2,
+          "name": "理解与追问",
+          "meaning": "客户确认理解并继续追问产品、价格或方案细节。",
+          "examples": [
+            "明白",
+            "那",
+            "具体",
+            "怎么算",
+            "还有"
+          ]
+        },
+        {
+          "level": 3,
+          "name": "异议软化",
+          "meaning": "客户由明确反对转为可考虑、接受替代方案或愿意继续比较。",
+          "examples": [
+            "可以考虑",
+            "这样的话",
+            "那还行",
+            "可以看看"
+          ]
+        },
+        {
+          "level": 4,
+          "name": "行动接受",
+          "meaning": "客户同意试驾、算价、留资、复店或明确跟进时间。",
+          "examples": [
+            "可以试驾",
+            "帮我算",
+            "加微信",
+            "明天联系",
+            "再来看看"
+          ]
+        },
+        {
+          "level": 5,
+          "name": "交易推进",
+          "meaning": "客户确认锁车、下订、准备资料或支付安排。",
+          "examples": [
+            "订车",
+            "就定",
+            "准备资料",
+            "付定金"
+          ]
+        }
+      ],
+      "stateTransitions": [
+        {
+          "enabled": true,
+          "scene": "需求挖掘",
+          "from": "需求未知或模糊",
+          "to": "需求新增明确",
+          "minimumReactionLevel": 1
+        },
+        {
+          "enabled": true,
+          "scene": "产品讲解",
+          "from": "产品价值不明确",
+          "to": "理解与自身需求的关系",
+          "minimumReactionLevel": 2
+        },
+        {
+          "enabled": true,
+          "scene": "试驾推进",
+          "from": "未形成体验动作",
+          "to": "愿意试驾或已预约",
+          "minimumReactionLevel": 4
+        },
+        {
+          "enabled": true,
+          "scene": "价格金融",
+          "from": "购车成本不明确",
+          "to": "接受算价或付款方案讨论",
+          "minimumReactionLevel": 2
+        },
+        {
+          "enabled": true,
+          "scene": "异议处理",
+          "from": "异议阻碍推进",
+          "to": "异议软化或接受替代方案",
+          "minimumReactionLevel": 3
+        },
+        {
+          "enabled": true,
+          "scene": "竞品对比",
+          "from": "偏向竞品或差异不明",
+          "to": "愿意重新比较或体验",
+          "minimumReactionLevel": 3
+        },
+        {
+          "enabled": true,
+          "scene": "家人决策",
+          "from": "决策链未闭合",
+          "to": "同意共同沟通或共同到店",
+          "minimumReactionLevel": 4
+        },
+        {
+          "enabled": true,
+          "scene": "成交推进",
+          "from": "尚未进入交易动作",
+          "to": "报价、锁车、下订或资料准备",
+          "minimumReactionLevel": 4
+        },
+        {
+          "enabled": true,
+          "scene": "跟进闭环",
+          "from": "后续动作不明确",
+          "to": "动作、时间和渠道已约定",
+          "minimumReactionLevel": 4
+        }
+      ],
+      "eliminationRules": [
+        {
+          "enabled": true,
+          "name": "缺少完整互动链",
+          "description": "没有形成客户触发、销售回应、客户后续反应三段证据。"
+        },
+        {
+          "enabled": true,
+          "name": "角色未确认",
+          "description": "关键证据仍是说话人编号或角色待复核。"
+        },
+        {
+          "enabled": true,
+          "name": "泛化讲解",
+          "description": "销售连续讲产品但没有承接客户需求或异议。"
+        },
+        {
+          "enabled": true,
+          "name": "长时间单向输出",
+          "description": "销售连续讲解超过90秒且客户没有有效互动。",
+          "threshold": 90
+        },
+        {
+          "enabled": true,
+          "name": "客户反应倒退",
+          "description": "客户在后续反应中明确拒绝、反感、投诉或终止沟通。"
+        },
+        {
+          "enabled": true,
+          "name": "不当承诺或贬低竞品",
+          "description": "包含绝对承诺、最低价保证、贷款必过或贬低竞品表达。"
+        },
+        {
+          "enabled": true,
+          "name": "只靠降价推进",
+          "description": "没有价值说明，仅通过优惠或降价换取客户反应。"
+        },
+        {
+          "enabled": true,
+          "name": "销售未创造增量",
+          "description": "客户已主动提出下一步，销售没有增加确认、方案或行动安排。"
+        },
+        {
+          "enabled": true,
+          "name": "知识冲突",
+          "description": "车型、价格、权益、金融、库存或交付信息与有效知识版本冲突。"
+        }
+      ],
+      "knowledgeRequirements": [
+        {
+          "enabled": true,
+          "category": "车型与配置",
+          "requirement": "车型、版本、年款和功能必须匹配当前品牌知识库。",
+          "tolerance": "不允许核心参数错误"
+        },
+        {
+          "enabled": true,
+          "category": "价格与权益",
+          "requirement": "必须绑定适用区域、门店和有效日期。",
+          "tolerance": "过期或跨区域政策不得入库"
+        },
+        {
+          "enabled": true,
+          "category": "金融方案",
+          "requirement": "首付、月供、期限和利率计算可复核。",
+          "tolerance": "计算误差不超过1%"
+        },
+        {
+          "enabled": true,
+          "category": "库存与交付",
+          "requirement": "只能引用当前库存和交付数据，不得作确定性承诺。",
+          "tolerance": "必须标注数据时间"
+        },
+        {
+          "enabled": true,
+          "category": "售后政策",
+          "requirement": "质保、保养和服务权益必须引用当前政策。",
+          "tolerance": "不允许扩大承诺"
+        },
+        {
+          "enabled": true,
+          "category": "竞品信息",
+          "requirement": "比较维度和数据必须有可追溯来源。",
+          "tolerance": "禁止贬低或无法验证的比较"
+        }
+      ],
+      "reviewRules": {
+        "reviewerRoles": [
+          "店长",
+          "内训师"
+        ],
+        "reviewActions": [
+          "审核通过",
+          "驳回",
+          "修改后入库"
+        ],
+        "deadlineHours": 48,
+        "officialMinimumApprovals": 2,
+        "maxEdits": 2,
+        "productExpertOnKnowledgeConflict": true
+      },
+      "outcomeValidation": {
+        "testDriveDays": 7,
+        "revisitDays": 14,
+        "quoteDays": 14,
+        "orderDays": 30,
+        "dealOrLossDays": 60,
+        "storeValidatedUses": 10,
+        "storeValidatedSalespeople": 3,
+        "benchmarkUses": 30,
+        "benchmarkSalespeople": 5,
+        "baselineLiftPoints": 5,
+        "downgradeNegativeReactionRate": 15
+      }
+    }
+  },
+  "semanticModel": {
+    "entities": [
+      {
+        "name": "接待会话",
+        "description": "一次可独立分析的销售与客户对话。",
+        "enabled": true
+      },
+      {
+        "name": "会话片段",
+        "description": "按时间顺序切分的连续对话单元，连接原始会话、说话角色和业务场景。",
+        "enabled": true
+      },
+      {
+        "name": "洞察事实",
+        "description": "事实层一次大模型调用形成的结构化客观事实，不包含诊断、策略或下一步动作。",
+        "enabled": true
+      },
+      {
+        "name": "原文证据",
+        "description": "支持洞察事实的原文、说话人、时间戳、文本版本和会话片段定位。",
+        "enabled": true
+      },
+      {
+        "name": "事实冲突",
+        "description": "同一事实存在互斥值、跨角色矛盾或新旧表达不一致时形成的待复核对象。",
+        "enabled": true
+      },
+      {
+        "name": "规则执行",
+        "description": "诊断规则读取事实和证据后产生的命中记录、解释和复核要求。",
+        "enabled": true
+      },
+      {
+        "name": "干预动作",
+        "description": "销售采纳的跟进策略、店长辅导或AI陪练任务。",
+        "enabled": true
+      },
+      {
+        "name": "业务结果",
+        "description": "复店、成交、败单、已跟进等由CRM、POS或人工反馈确认的真实结果。",
+        "enabled": true
+      },
+      {
+        "name": "能力周期",
+        "description": "销售在同类问题上的分析、干预和后续复检记录。",
+        "enabled": true
+      },
+      {
+        "name": "原文片段",
+        "description": "带说话人和时间戳的可回溯对话证据。",
+        "enabled": true
+      },
+      {
+        "name": "客户",
+        "description": "当前接待中的主客户角色。",
+        "enabled": true
+      },
+      {
+        "name": "销售",
+        "description": "当前录音工牌绑定的销售角色。",
+        "enabled": true
+      },
+      {
+        "name": "车型",
+        "description": "对话中明确提及的车型或车系。",
+        "enabled": true
+      },
+      {
+        "name": "客户需求",
+        "description": "客户明确表达的用途、预算、关注点和购车条件。",
+        "enabled": true
+      },
+      {
+        "name": "客户异议",
+        "description": "客户明确表达的价格、竞品、产品、信任或决策顾虑。",
+        "enabled": true
+      },
+      {
+        "name": "销售动作",
+        "description": "销售在接待中实际完成的询问、讲解、邀约、报价和回应。",
+        "enabled": true
+      },
+      {
+        "name": "诊断问题",
+        "description": "诊断规则根据事实识别出的销售短板或风险。",
+        "enabled": true
+      },
+      {
+        "name": "策略",
+        "description": "针对诊断问题配置的下一步处理动作。",
+        "enabled": true
+      },
+      {
+        "name": "业务卡片",
+        "description": "生成层按规范形成的建议、分析或候选话术。",
+        "enabled": true
+      }
+    ],
+    "attributes": [
+      {
+        "entity": "会话片段",
+        "name": "片段序号与时间范围",
+        "dataType": "时间",
+        "required": true,
+        "description": "片段在当前会话中的顺序、开始时间和结束时间。"
+      },
+      {
+        "entity": "洞察事实",
+        "name": "事实状态",
+        "dataType": "枚举",
+        "required": true,
+        "description": "有证据、未提及、冲突待复核或人工已确认。"
+      },
+      {
+        "entity": "原文证据",
+        "name": "来源版本",
+        "dataType": "文本",
+        "required": true,
+        "description": "证据来自AI原始转写还是人工修正版本。"
+      },
+      {
+        "entity": "原文片段",
+        "name": "说话人",
+        "dataType": "枚举",
+        "required": true,
+        "description": "该句话由销售、主客户或其他参与者说出。"
+      },
+      {
+        "entity": "原文片段",
+        "name": "时间戳",
+        "dataType": "时间",
+        "required": true,
+        "description": "该句话在录音中的开始位置。"
+      },
+      {
+        "entity": "客户需求",
+        "name": "需求类型",
+        "dataType": "枚举",
+        "required": true,
+        "description": "用途、预算、购买时间、决策人或核心关注点。"
+      },
+      {
+        "entity": "客户异议",
+        "name": "异议类型",
+        "dataType": "枚举",
+        "required": true,
+        "description": "价格、竞品、产品、信任、决策人、交付或售后。"
+      },
+      {
+        "entity": "销售动作",
+        "name": "动作类型",
+        "dataType": "枚举",
+        "required": true,
+        "description": "询问、讲解、邀约、报价、异议回应或跟进确认。"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "接待会话",
+        "relation": "包含",
+        "target": "原文片段",
+        "description": "会话由按时间排序的原文片段构成。",
+        "enabled": true
+      },
+      {
+        "source": "接待会话",
+        "relation": "切分为",
+        "target": "会话片段",
+        "description": "完整会话按时间间隔和连续语义切分为片段。",
+        "enabled": true
+      },
+      {
+        "source": "会话片段",
+        "relation": "产生",
+        "target": "原文证据",
+        "description": "证据能够定位到具体会话片段、说话人和时间戳。",
+        "enabled": true
+      },
+      {
+        "source": "原文证据",
+        "relation": "支持",
+        "target": "洞察事实",
+        "description": "每个洞察事实必须有可追溯证据；无证据时保持未提及。",
+        "enabled": true
+      },
+      {
+        "source": "洞察事实",
+        "relation": "存在冲突",
+        "target": "事实冲突",
+        "description": "互斥表达不自动覆盖，按冲突规则或人工复核处理。",
+        "enabled": true
+      },
+      {
+        "source": "洞察事实",
+        "relation": "触发",
+        "target": "规则执行",
+        "description": "诊断层只读取事实包和本层规则，不重新读取完整录音。",
+        "enabled": true
+      },
+      {
+        "source": "策略",
+        "relation": "形成",
+        "target": "干预动作",
+        "description": "策略被销售、店长或运营采纳后才形成实际干预。",
+        "enabled": true
+      },
+      {
+        "source": "干预动作",
+        "relation": "候选影响",
+        "target": "业务结果",
+        "description": "只有干预已执行且业务结果回流时才建立候选归因，不直接宣称因果。",
+        "enabled": true
+      },
+      {
+        "source": "业务结果",
+        "relation": "进入复检",
+        "target": "能力周期",
+        "description": "同类场景再次接待时比较问题命中、SOP完成和结果变化。",
+        "enabled": true
+      },
+      {
+        "source": "客户",
+        "relation": "表达",
+        "target": "客户需求",
+        "description": "客户原话形成需求事实。",
+        "enabled": true
+      },
+      {
+        "source": "客户",
+        "relation": "提出",
+        "target": "客户异议",
+        "description": "客户原话形成异议事实。",
+        "enabled": true
+      },
+      {
+        "source": "销售",
+        "relation": "执行",
+        "target": "销售动作",
+        "description": "销售原话或行为形成动作事实。",
+        "enabled": true
+      },
+      {
+        "source": "诊断问题",
+        "relation": "依据",
+        "target": "客户需求",
+        "description": "诊断必须引用事实与证据。",
+        "enabled": true
+      },
+      {
+        "source": "诊断问题",
+        "relation": "匹配",
+        "target": "策略",
+        "description": "策略库按问题编码和适用条件匹配。",
+        "enabled": true
+      },
+      {
+        "source": "策略",
+        "relation": "生成",
+        "target": "业务卡片",
+        "description": "生成层按卡片规范组织策略内容。",
+        "enabled": true
+      }
+    ],
+    "enums": [
+      {
+        "name": "说话人类型",
+        "values": "销售、主客户、其他参与者、无法判断",
+        "description": "用于统一角色分离结果。"
+      },
+      {
+        "name": "需求类型",
+        "values": "用途、预算、购买时间、决策人、核心关注点、竞品、已有车辆",
+        "description": "用于归一化客户需求事实。"
+      },
+      {
+        "name": "异议类型",
+        "values": "价格、竞品、产品不匹配、家人决策、信任、交付、售后",
+        "description": "用于归一化客户异议事实。"
+      },
+      {
+        "name": "风险等级",
+        "values": "低、中、高",
+        "description": "由诊断规则配置，不由大模型自由生成。"
+      }
+    ],
+    "synonyms": [
+      {
+        "canonical": "试驾",
+        "aliases": "体验、开一下、试一下",
+        "scope": "汽车行业"
+      },
+      {
+        "canonical": "报价",
+        "aliases": "落地价、算价、优惠、首付月供",
+        "scope": "汽车行业"
+      },
+      {
+        "canonical": "竞品",
+        "aliases": "对比车型、别的品牌、其他车",
+        "scope": "汽车行业"
+      }
+    ],
+    "brandExtensions": []
+  }
+}

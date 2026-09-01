@@ -1,0 +1,21 @@
+node_modules/
+dist/
+data/
+uploads/
+.env
+.env.*
+!.env.example
+.DS_Store
+npm-debug.log*
+.tmp/
+outputs/
+coverage/
+*.log
+
+# 本地业务数据、录音与客户材料禁止提交公开仓库
+/*.mp3
+/*.m4a
+/*.wav
+/*.aac
+/*.docx
+/*.xlsx
